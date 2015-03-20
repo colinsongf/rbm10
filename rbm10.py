@@ -61,4 +61,8 @@ rbm1.fit(x_train, y_train)
 # Compute the pseudo-likelihood of X.
 rbm1.score_samples(x_oos)
 
+# TypeError: ufunc 'logaddexp' not supported for the input types, 
+# and the inputs could not be safely coerced to any supported types 
+# according to the casting rule ''safe''
+
 'bye'
