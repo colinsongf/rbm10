@@ -30,8 +30,35 @@ wide_a = np.array(df1)
 x_a    = wide_a[:,x1_i:x4_i]
 y_a    = wide_a[:,pctlead_i]
 
+# My data is sorted by cdate descending.
+# Most recent row is row-zero.
+
+# I should separate rows into train and oos:
+
+oos_start   = 0
+oos_end     = train_start -1
+train_start = 10
+train_end   = train_start + 1000
+
+x_oos   = x_a[oos_start:oos_end]
+y_oos   = y_a[oos_start:oos_end]
+x_train = x_a[train_start:train_end]
+y_train = y_a[train_start:train_end]
+
+# ref:
+# http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.BernoulliRBM.html
 import sklearn.neural_network
 
 pdb.set_trace()
 rbm1 = sklearn.neural_network.BernoulliRBM(n_components=2)
-rbm1.fit(x_a, y_a)
+
+# ref:
+# http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.BernoulliRBM.html#sklearn.neural_network.BernoulliRBM.fit
+rbm1.fit(x_train, y_train)
+
+# ref:
+# http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.BernoulliRBM.html#sklearn.neural_network.BernoulliRBM.score_samples 	
+# Compute the pseudo-likelihood of X.
+rbm1.score_samples(x_oos)
+
+'bye'
