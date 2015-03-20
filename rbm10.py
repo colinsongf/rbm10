@@ -36,8 +36,8 @@ y_a    = wide_a[:,pctlead_i]
 # I should separate rows into train and oos:
 
 oos_start   = 0
-oos_end     = train_start -1
-train_start = 10
+oos_end     = 10
+train_start = oos_end + 1
 train_end   = train_start + 1000
 
 x_oos   = x_a[oos_start:oos_end]
